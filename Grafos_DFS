@@ -1,0 +1,67 @@
+//Tipos de grafo
+//-no dirigido
+    //IR de A a B y B a A, n una matriz este grafico sera simetrico G = {(A,B),(B,A)}
+//dirigido
+    //Solo tiene una direccion G={A,B} o G={B,A}
+//Conjunto de nodos y aristas {(N,A),(N,A)}
+//Asignamos el peso de las aristas, no confundir con capacidad, el peso se mide en una variable x,  generalmente se hace por tiempo
+//pero tambien puede ser dinero. Cuando el grafo no tiene peso anotado se sobreentiende que pesa 1
+
+//ARBOLES, otro tipo de grafo con caracteristicas especiales, tiene 2 tipos, arboles binarios o no binarios, estos siempre seran dirigidos
+    //donde acabe sera nudo hoja, si no tiene almenos un hijo no es considerado hijo, sino, hoja
+//CICLO, conjunto de aristas que parte de A y llegan al mismo nodo (Hamilton Cycle)
+
+//Recorrido de Grafos
+    //Recorrido DFS (Recorrido de profundidad), pensar en una pila(la prueba de escritoria de una recursividad es una pila), hay dos tipos para programacion
+    //usando stack statica y otra con recursividad
+    //Recorrido PFS ()pensar en una cola 
+//DFS. Usar una pila(stack) estatica para funciones, void DFS(int nodoInicial(Source)), luego crear abajo un stack<int> pila, luego le colocamos
+//a la pila el nodo inicial
+   #include<bits/stdc++.h>
+
+using namespace std;
+
+#define input freopen("in.txt","r",stdin)
+#define output freopen("out.txt","w",stdout)
+
+bool vis[10000];
+vector<int> grafo[10000];
+void dfs (int nodoInicial) {
+    stack<int> pilita;
+    pilita.push(nodoInicial);
+    while(!pilita.empty()){ // La pilita no esta vacia ????
+        int nodoActual = pilita.top(); // obtener el primer elemento de la pila
+        pilita.pop();
+        if(!vis[nodoActual]) {
+            vis[nodoActual] = true; // Marco como visitado al nodo actual
+            // empezar a visitar a sus amigos 
+            for(int i = 0; i < grafo[nodoActual].size(); i++ ){
+                int amigo = grafo[nodoActual][i]; // vecino o amigo
+                if(!vis[amigo]) { // El amigo no ha sido visitado ?
+                    pilita.push(amigo);
+                } 
+            }   
+        }
+    }
+}
+
+
+int main() {
+    input;
+    int nodos, aristas;
+    cin>>nodos>>aristas; // 11 19
+    for(int i = 0 ; i < aristas; i++ ) {
+        int nodoInicial, nodoFinal;
+        cin>>nodoInicial>>nodoFinal;
+        grafo[nodoInicial].push_back(nodoFinal);
+    }
+    // Si el nodo S puede llegar al nodo T
+    int S,T; // 1 7
+    cin>>S>>T;
+    dfs(S);
+    if(vis[T]) { // logre visitar el 7 
+        cout<<"Si lo podria conocer"<<endl;
+    } else {
+        cout<<"No lo podria conocer"<<endl;
+    }
+}
