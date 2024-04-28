@@ -6,6 +6,6 @@ realizar, ecisten dos tipos para resilver un problema, los DFS Y BFS.
 
 [https://github.com/28charly7/Algoritmica/commit/3df4810aea30ad1375f0da7f4f1a8465b11376a1](Grafos_BFS.cpp)
 
-[DFS][Grafos_DFS.cpp]
+
 
 -BFS
