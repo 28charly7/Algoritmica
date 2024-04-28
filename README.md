@@ -6,6 +6,4 @@ realizar, ecisten dos tipos para resilver un problema, los DFS Y BFS.
 
 [BFS](Grafos_BFS)
 
-
-
--BFS
+[DFS](Grafos_DFS)
